@@ -32,7 +32,15 @@ public class App : ZMonoSingleton<App>
 		// 这个GameManager需要自己实现
 //		yield return StartCoroutine (GameManager.Instance ().OnStart ());
         ZConsole.Instance();
-		yield return null;
+        ZDebug.Init();
+        if (!APP_CONFIG.DEBUG)
+        {
+            ZDebug.DisplayType = ZDebug.OutputType.File;
+            ZDebug.DisplayMethod = ZDebug.ConsoleLogMethod.Selected;
+        }
+        ZDebug.SelectType<App>();
+        ZDebug.Log("App Started!");
+        yield return null;
     }
 
     void Update()

@@ -17,38 +17,26 @@ namespace ZFramework
 
                 if (FindObjectsOfType<T>().Length > 1)
                 {
-                    if (APP_CONFIG.DEBUG)
-                    {
-                        ZPrint.Error("More than 1!");
-                    }
-                    return instance;
+                    ZDebug.Log("More than 1!");
                 }
+                return instance;
+            }
 
-                if (instance == null)
-                {
-                    string instanceName = typeof(T).Name;
-                    if (APP_CONFIG.DEBUG)
-                    {
-                        ZPrint.Log("Instance Name: " + instanceName);
-                    }
-                    GameObject instanceGO = GameObject.Find(instanceName);
+            if (instance == null)
+            {
+                string instanceName = typeof(T).Name;
+                ZDebug.Log("Instance Name: " + instanceName);
+                GameObject instanceGO = GameObject.Find(instanceName);
 
-                    if (instanceGO == null)
-                        instanceGO = new GameObject(instanceName);
-                    instance = instanceGO.AddComponent<T>();
-                    DontDestroyOnLoad(instanceGO);  // 不会被释放
-                    if (APP_CONFIG.DEBUG)
-                    {
-                        ZPrint.Log("Add New Singleton " + instance.name + " in Game!");
-                    }
-                }
-                else
-                {
-                    if (APP_CONFIG.DEBUG)
-                    {
-                        ZPrint.Log("Already exist: " + instance.name);
-                    }
-                }
+                if (instanceGO == null)
+                    instanceGO = new GameObject(instanceName);
+                instance = instanceGO.AddComponent<T>();
+                DontDestroyOnLoad(instanceGO);  // 不会被释放
+                ZDebug.Log("Add New Singleton " + instance.name + " in Game!");
+            }
+            else
+            {
+                ZDebug.Log("Already exist: " + instance.name);
             }
 
             return instance;
