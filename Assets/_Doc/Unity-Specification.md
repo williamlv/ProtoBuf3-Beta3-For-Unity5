@@ -44,3 +44,4 @@
 + 需要使用Unity生命周期的单例模式 ZMonoSingleton<T>
 + 有限状态机 FSM
 + 常量定义APPConst.cs
++ 输出Log使用ZDebug.Log
