@@ -111,6 +111,7 @@ message SearchRequest {
 - 嵌套消息与bytes是兼容的——只要bytes包含该消息的一个编码过的版本。
 - fixed32与sfixed32是兼容的，fixed64与sfixed64是兼容的。
 - enum is compatible with int32, uint32, int64, and uint64
+
 ### Any
 代替了extensions;
 ```
@@ -157,8 +158,12 @@ map编写格式为 map<key_type, value_type> map_field = N;
 - 不能repeated
 - 不能依赖特定的顺序访问
 - merge,重复赋值，相同的Key会保留最后一个
+-
 ### Package
 可以为proto声明一个package,防止不同的消息命名冲突
+
 ### RPC, gRPC
+
 ### Option
+
 ### Custom Options
